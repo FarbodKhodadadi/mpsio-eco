@@ -1,25 +1,63 @@
+
 # MPSIO-ECO
 
-**MPSIO-ECO: One-Lead ECG Condition Detection via Most Possible Separation Index Optimization**
+**One-Lead ECG Condition Detection via Most Possible Separation Index Optimization**
 
-Research code for the MPSIO-ECO manuscript. The repository contains the Alpha
-model, its architectural ablations, the center-based separation-index loss,
-repeated-seed/cross-validation training, latent-feature analysis, the supplied
-MIT-BIH beat experiment, paired statistical analysis, and a reconstructed
-implementation of the manuscript's synthetic toy experiments.
+<p align="center">
+  <img
+    src="assets/MPSIO_ECO_Graphical_Abstract.jpg"
+    alt="MPSIO-ECO graphical abstract showing the CNN-BiLSTM-attention architecture and center-based separation objective"
+    width="100%"
+  />
+</p>
 
-> **Important before public release:** The manuscript and the supplied code do
-> not currently describe one fully consistent data pipeline. The manuscript
-> identifies PTB-XL (21,799 records from 18,869 patients), while one supplied
-> notebook starts from `Data/Diagnostics.xlsx` + `Data/ECGData/*.csv` and its
-> markdown describes a separate collection of 10,646 patients. The primary
-> PTB-XL label-mapping/preprocessing cells and the exact 2-/5-class label lists
-> were not present in the supplied code. This repository therefore uses an
-> explicit `manifest.csv` input and **does not invent the missing class mapping**.
-> Resolve and document the source cohort and label mapping before claiming that
-> a public run reproduces the paper exactly.
+<p align="center">
+  <a href="assets/MPSIO_ECO_Graphical_Abstract.svg">
+    View vector graphical abstract (SVG)
+  </a>
+</p>
+
+<p align="center">
+  <strong>Geometry-aware representation learning for single-lead ECG classification.</strong>
+</p>
+
+---
+
+This repository contains the research implementation of **MPSIO-ECO**, a
+representation-learning framework for single-lead electrocardiogram (ECG)
+classification.
+
+The proposed framework combines convolutional feature extraction,
+bidirectional recurrent modeling, multi-head self-attention, and a
+center-based separation-index objective to encourage compact
+within-class representations and improved separation between
+different cardiac-condition classes.
+
+### Repository contents
+
+- **Alpha:** Proposed CNN–BiLSTM–attention architecture trained using MPSIO-ECO.
+- **Alpha-CE:** Matched full-architecture cross-entropy baseline.
+- **Architectural ablations:** Beta, Gamma, Delta, and Epsilon.
+- **MPSIO-ECO loss:** Center-based latent-space separation objective.
+- **Experimental evaluation:** Cross-validation, multiple random seeds,
+  and architectural comparisons.
+- **Feature analysis:** Latent-feature ranking, Random Forest classification,
+  and feature pruning.
+- **MIT-BIH experiments:** Beat-level classification workflows.
+- **Statistical analysis:** Paired comparisons and effect-size calculations.
+- **Synthetic experiments:** Toy datasets illustrating geometric optimization.
+
+The implementation is written in Python and PyTorch.
+
+> **Reproducibility note:** The repository supports user-defined classification
+> tasks. Dataset-specific label mappings and preprocessing should be supplied
+> by the researcher. The example rhythm labels documented below are not
+> hard-coded as the manuscript's PTB-XL target classes.
+
+---
 
 ## 1. Method overview
+
 
 MPSIO-ECO combines a predictive cross-entropy objective with a center-based
 latent-space separation regularizer:
@@ -183,6 +221,31 @@ Because the supplied attachments do not contain the complete PTB-XL
 multi-label-to-11-class mapping or the 2-/5-class class lists, those mappings
 must be provided by the authors. Do not simply treat all SCP statements as
 mutually exclusive classes.
+
+### Example dataset: Observed rhythm labels
+
+The supplied `Diagnostics.xlsx` workbook contains 11 distinct
+raw rhythm labels:
+
+| Rhythm code |
+|---|
+| SB |
+| SR |
+| AFIB |
+| ST |
+| SVT |
+| AF |
+| SA |
+| AT |
+| AVNRT |
+| AVRT |
+| SAAWR |
+
+These labels are documented for reference only. No class selection,
+merging, or task-specific mapping is imposed by the repository.
+
+Researchers can define their own two-, five-, or eleven-class
+classification tasks through their preprocessing pipelines.
 
 ## 5. Inspect model parameter counts
 
