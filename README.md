@@ -10,7 +10,7 @@
     width="100%"
   />
 </p>
-\
+
 
 <p align="center">
   <strong>Geometry-aware representation learning for single-lead ECG classification.</strong>
@@ -61,8 +61,8 @@ $$
 \qquad \lambda = 1.
 $$
 
-For a mini-batch, let $h_i$ be the time-pooled attention representation and
-$\mu_c$ the mean representation for class $c$. The paper's ECG objective
+For a mini-batch, let $$h_i$$ be the time-pooled attention representation and
+$$\mu_c$$ the mean representation for class $$c$$. The paper's ECG objective
 uses
 
 $$
@@ -85,6 +85,7 @@ $$
 \mathcal{L}_{\text{sep}} =
 \frac{S_{\text{intra}}}{S_{\text{inter}}+\epsilon}.
 $$
+
 A class is eligible for the mini-batch estimate when it has at least two
 examples. If fewer than two eligible classes are present, the implementation
 returns a differentiable zero for that batch. This avoids a shape or gradient
