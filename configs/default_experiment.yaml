@@ -1,0 +1,10 @@
+protocol: cv                 
+seeds: [42, 123, 456, 789, 999]
+models: [alpha, alpha_ce, beta, gamma, delta, epsilon]
+epochs: 30
+batch_size: 32
+learning_rate: 0.001
+separation_weight: 1.0
+sampling: weighted           
+lead_index: 0
+expected_length: 5000

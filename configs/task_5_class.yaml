@@ -1,0 +1,8 @@
+name: task_5_class
+expected_num_classes: 5
+classes:
+  - REPLACE_WITH_CLASS_1
+  - REPLACE_WITH_CLASS_2
+  - REPLACE_WITH_CLASS_3
+  - REPLACE_WITH_CLASS_4
+  - REPLACE_WITH_CLASS_5

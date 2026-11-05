@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the MPSIO-ECO manuscript."
+title: "MPSIO-ECO: One-Lead ECG Condition Detection via Most Possible Separation Index Optimization"
+authors:
+  - family-names: Forootani
+    given-names: Ehsan
+  - family-names: Khodadadi Aski
+    given-names: Farbod
+  - family-names: Mahmoudi
+    given-names: Shervin
+  - family-names: Masoudi-Nejad
+    given-names: Ali
