@@ -10,12 +10,7 @@
     width="100%"
   />
 </p>
-
-<p align="center">
-  <a href="assets/MPSIO_ECO_Graphical_Abstract.svg">
-    View vector graphical abstract (SVG)
-  </a>
-</p>
+\
 
 <p align="center">
   <strong>Geometry-aware representation learning for single-lead ECG classification.</strong>
@@ -61,27 +56,35 @@ The implementation is written in Python and PyTorch.
 
 MPSIO-ECO combines a predictive cross-entropy objective with a center-based
 latent-space separation regularizer:
+$$
+\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{CE}} + \lambda \mathcal{L}_{\text{sep}},
+\qquad \lambda = 1.
+$$
 
-\[
-\mathcal{L}_{total}=\mathcal{L}_{CE}+\lambda\mathcal{L}_{sep},
-\qquad \lambda=1.
-\]
-
-For a mini-batch, let \(h_i\) be the time-pooled attention representation and
-\(\mu_c\) the mean representation for class \(c\). The paper's ECG objective
+For a mini-batch, let $h_i$ be the time-pooled attention representation and
+$\mu_c$ the mean representation for class $c$. The paper's ECG objective
 uses
 
-\[
-S_{intra}=\frac{1}{|C'|}\sum_{c\in C'}\frac{1}{|I_c|}
-\sum_{i\in I_c}\|h_i-\mu_c\|_2^2,
-\]
+$$
+S_{\text{intra}} =
+\frac{1}{|C'|}
+\sum_{c \in C'}
+\frac{1}{|I_c|}
+\sum_{i \in I_c}
+\|h_i - \mu_c\|_2^2,
+$$
 
-\[
-S_{inter}=\frac{2}{|C'|(|C'|-1)}\sum_{c<c'}\|\mu_c-\mu_{c'}\|_2,
-\qquad
-\mathcal{L}_{sep}=\frac{S_{intra}}{S_{inter}+\epsilon}.
-\]
+$$
+S_{\text{inter}} =
+\frac{2}{|C'|(|C'|-1)}
+\sum_{c<c'}
+\|\mu_c - \mu_{c'}\|_2,
+$$
 
+$$
+\mathcal{L}_{\text{sep}} =
+\frac{S_{\text{intra}}}{S_{\text{inter}}+\epsilon}.
+$$
 A class is eligible for the mini-batch estimate when it has at least two
 examples. If fewer than two eligible classes are present, the implementation
 returns a differentiable zero for that batch. This avoids a shape or gradient
