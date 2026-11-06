@@ -77,8 +77,8 @@ $$
 $$
 S_{\text{inter}} =
 \frac{2}{|C'|(|C'|-1)}
-\sum_{c<c'}
-\|\mu_c - \mu_{c'}\|_2,
+\sum_{\substack{c,c' \in C' \\ c < c'}}
+\left\| \mu_c - \mu_{c'} \right\|_2
 $$
 
 $$
