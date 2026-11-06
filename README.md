@@ -53,16 +53,16 @@ The implementation is written in Python and PyTorch.
 
 ## 1. Method overview
 
-
 MPSIO-ECO combines a predictive cross-entropy objective with a center-based
 latent-space separation regularizer:
+
 $$
 \mathcal{L}_{\text{total}} = \mathcal{L}_{\text{CE}} + \lambda \mathcal{L}_{\text{sep}},
 \qquad \lambda = 1.
 $$
 
-For a mini-batch, let $$h_i$$ be the time-pooled attention representation and
-$$\mu_c$$ the mean representation for class $$c$$. The paper's ECG objective
+For a mini-batch, let $h_i$ be the time-pooled attention representation and
+$\mu_c$ the mean representation for class $c$. The paper's ECG objective
 uses
 
 $$
